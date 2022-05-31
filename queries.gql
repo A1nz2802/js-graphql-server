@@ -1,0 +1,65 @@
+# Query 1
+mutation($name: String!, $street: String!, $city: String!, $phone: String) {
+  addPerson(name: $name, street: $street, city: $city, phone: $phone) {
+    name,
+    phone,
+    address {
+      city,
+      street
+    },
+    id
+  }
+}
+
+Variables
+{
+  "name": "Jair",
+  "street": "MZ J LOte 232",
+  "city": "Piura",
+  "phone": "9834933"
+}
+
+#------------------------------------------
+
+# Query 2
+query ($phone: YesNo) {
+  allPersons (phone: $phone) {
+    name,
+    phone
+  }
+}
+
+// Variables
+{
+  "phone": "YES"
+}
+
+#------------------------------------------
+
+# Query 3
+mutation {
+  editNumber(name: "A1nz", phone: "989338123") {
+    name,
+    phone
+  }
+}
+
+#------------------------------------------
+
+# Query 4
+query {
+  personCount,
+  allPersonsData: allPersons {
+    name
+  },
+  personsWithPhone: allPersons (phone: YES) {
+    name,
+    phone
+  },
+  personsWithoutPhone: allPersons (phone: NO) {
+    name,
+    phone
+  }
+}
+
+#------------------------------------------
